@@ -162,4 +162,30 @@ const data: Book[] = [
   }
   
   
-  
+  // getBooks
+  const allBooks:Book[] = getBooks();
+  allBooks;
+
+  // destructuring with Object
+  const book = getBook(101); 
+  // book is of type Book | undefined
+  if (book) {
+    const { title, author, genres, pages, translations } = book;
+    console.log(`Tile: ${title}`);
+    console.log(`Author: ${author}`);
+    console.log(`Genres: ${genres.join(", ")}`);
+    console.log(`Pages: ${pages}`);
+    console.log(`Spanish Title: ${translations.spanish ?? "N/A"}`);
+  }
+
+  // destructuring with Array
+  const [firstBook, secondBook] = allBooks;
+   
+  const primaryGenreOfFirstBook = firstBook.genres[0] ?? "N/A";
+  const secondaryGenreOfFirstBook = firstBook.genres[1] ?? "N/A";
+  console.log(`First Book Primary Genre: ${primaryGenreOfFirstBook}`);
+  console.log(`First Book Secondary Genre: ${secondaryGenreOfFirstBook}`);
+
+  const [one,two] = firstBook.genres;
+  console.log(`One: ${one}`);
+  console.log(`Two: ${two}`);

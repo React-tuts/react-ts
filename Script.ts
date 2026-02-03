@@ -9,8 +9,8 @@ interface Translation {
 
 interface Review {
     rating: number,
-    ratingsCount: number,
-    reviewsCount: number
+    ratingsCount?: number,
+    reviewsCount?: number
 }
 
 interface Reviews {
@@ -26,7 +26,7 @@ interface Book {
     hasMovieAdaptation: boolean,
     pages: number,
     translations: Translation,
-    reviews: Reviews
+    reviews?: Reviews
 }
 
 const data: Book[] = [
@@ -186,6 +186,43 @@ const data: Book[] = [
   console.log(`First Book Primary Genre: ${primaryGenreOfFirstBook}`);
   console.log(`First Book Secondary Genre: ${secondaryGenreOfFirstBook}`);
 
-  const [one,two] = firstBook.genres;
+  // const [one,two] = firstBook.genres;
+  // console.log(`One: ${one}`);
+  // console.log(`Two: ${two}`);
+
+  // rest parameter with Array
+  const [first, second, ...otherBooks] = allBooks;
+
+  const [one,two,...other] = firstBook.genres;
   console.log(`One: ${one}`);
   console.log(`Two: ${two}`);
+
+  const newGenres = [...firstBook.genres, "classic"];
+
+const updatedBook = {
+    ...firstBook,
+    "moviePublicationDate": "2023-12-15",
+};
+
+const tempLiteral = `Hello React`;
+
+console.log(`${first.title} by ${first.author} has ${first.pages} pages.`);
+console.log(`New Genres: ${newGenres.join(", ")}`);
+console.log(`2 + 2 = ${2 + 2}`);
+
+const pages = firstBook.pages > 300 ? "Long read" : "Short read";
+
+function getYear(dateString: string): string {
+    return dateString.split("-")[0];
+}
+
+const publicationYear = (dateString: string) : string => dateString.split("-")[0];
+
+getYear(firstBook.publicationDate);
+console.log(`${firstBook.title} was published in ${publicationYear(firstBook.publicationDate)} and is a ${pages}.`);
+
+console.log(0 || "No pages");
+console.log(true || "No pages");
+console.log( "Hello" || "World");
+
+(book?.reviews?.goodreads?.rating ?? 0) + (book?.reviews?.librarything?.rating ?? 0);
